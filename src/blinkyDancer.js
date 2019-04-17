@@ -11,7 +11,7 @@ BlinkyDancer.prototype.step = function() {
   this.$node.toggle();
 };
 
-BlinkyDancer.prototype.stick = function (event) {
+BlinkyDancer.prototype.stick = function () {
   var blinkyTop = this.top;
   var blinkyLeft = this.left;
   if (window.dancers.length !== undefined) {
@@ -19,7 +19,7 @@ BlinkyDancer.prototype.stick = function (event) {
       var otherDancerTop = window.dancers[i].top;
       var otherDancerLeft = window.dancers[i].left;
       var newDistance = Math.sqrt(Math.pow((blinkyTop - otherDancerTop), 2) + Math.pow((blinkyLeft - otherDancerLeft), 2));
-      if (newDistance < 250) {
+      if (newDistance < 250 && window.dancers[i].constructor !== BlinkyDancer) {
         this.top = otherDancerTop;
         this.left = otherDancerLeft;
         this.$node.animate({ 'top': this.top, 'left': this.left });
